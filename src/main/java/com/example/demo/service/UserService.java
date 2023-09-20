@@ -27,4 +27,8 @@ public class UserService {
     public void delOne(Long id){
         this.userRepository.deleteById(id);
     }
+
+    public User getUserByLoginName(String loginName){
+        return this.userRepository.findByLoginName(loginName);
+    }
 }
