@@ -21,12 +21,12 @@ public class SecurityContext {
 
     /**
      *  解析abac表达式
-     * @param account 用户详细信息
+     * @param user 用户详细信息
      * @param abacs abac表达式详细信息集合
      * @return expressions集合, 将这个结果集存放到 Spring Security 或者Apache APISIX的userDetail上下文中
      */
-    public List<String> rbacPermissions(User account, List<Abac> abacs){
-        return this.rbacPermissions(account, abacs, Collections.emptyList());
+    public List<String> rbacPermissions(User user, List<Abac> abacs){
+        return this.rbacPermissions(user, abacs, Collections.emptyList());
     }
 
     /**

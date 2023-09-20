@@ -3,10 +3,12 @@ package com.example.demo;
 import com.example.demo.model.Abac;
 import com.example.demo.model.Permission;
 import com.example.demo.model.User;
+import com.example.demo.model.UserContribution;
 import com.example.demo.security.MetadataCustomizer;
 import com.example.demo.security.SecurityContext;
 import com.example.demo.service.AbacService;
 import com.example.demo.service.PermissionService;
+import com.example.demo.service.UserContributionService;
 import com.example.demo.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +27,9 @@ public class AbacApplicationTests {
     private SecurityContext securityContext;
     @Autowired
     private PermissionService permissionService;
+    @Autowired
+    private UserContributionService userContributionService;
 
-    @Test
-    void initData(){
-
-    }
 
     @Test
     void testRbac(){
@@ -42,9 +42,6 @@ public class AbacApplicationTests {
         permissions = securityContext.rbacPermissions(user, rbac);
         System.out.println(permissions);
 
-        user = userService.get(3L);
-        permissions = securityContext.rbacPermissions(user, rbac);
-        System.out.println(permissions);
     }
 
     @Test
@@ -54,9 +51,8 @@ public class AbacApplicationTests {
 
         List<String> permissions = securityContext.rbacPermissions(user, rbac);
         System.out.println(permissions);
-
-        permissions = securityContext.rbacPermissions(user, rbac, getMetadataCustomizer());
-        System.out.println(permissions);
+        List<String> permissions1 = securityContext.rbacPermissions(user, rbac, getMetadataCustomizer());
+        System.out.println(permissions1);
     }
 
     private List<MetadataCustomizer> getMetadataCustomizer() {
@@ -69,14 +65,44 @@ public class AbacApplicationTests {
     void testJpaSave(){
         Permission permission = new Permission();
         permission.setId(1L);
-        permission.setPermission("npm:update21");
+        permission.setPermission("npm:update1");
         List<Permission> permissions = List.of(permission);
         Abac abac = new Abac();
         abac.setId(1L);
-        abac.setExpression("loginName=='liuk41'");
+        abac.setExpression("metadata.get('ip')=='192.168.0.1'");
         abac.setPermissions(permissions);
-        Abac ret = this.abacService.save(abac);
-        System.out.println(ret);
+        Abac retAbac = this.abacService.save(abac);
+
+        Permission permission1 = new Permission();
+        permission1.setId(2L);
+        permission1.setPermission("npm:update2");
+        List<Permission> permissions1 = List.of(permission1);
+        Abac abac1 = new Abac();
+        abac1.setId(2L);
+        abac1.setExpression("contributions.contains('baidu/com')");
+        abac1.setPermissions(permissions1);
+        Abac retAbac1 = this.abacService.save(abac1);
+
+        User user = new User();
+        user.setId(1L);
+        user.setName("Liukai");
+        user.setLoginName("Liuk1");
+        UserContribution userContribution = new UserContribution();
+        userContribution.setId(1L);
+        userContribution.setRepository("333.com");
+        userContribution.setUser(user);
+        UserContribution retUserContribution = this.userContributionService.save(userContribution);
+
+
+        User user1 = new User();
+        user1.setId(2L);
+        user1.setName("test");
+        user1.setLoginName("test1");
+        UserContribution userContribution1 = new UserContribution();
+        userContribution1.setId(2L);
+        userContribution1.setRepository("baidu/com");
+        userContribution1.setUser(user1);
+        UserContribution retUserContribution1 = this.userContributionService.save(userContribution1);
     }
     @Test
     void testJpaRemove(){

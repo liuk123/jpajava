@@ -25,7 +25,7 @@ public class User extends BaseEntity implements Serializable {
     private String LoginName;
     private String password;
 
-    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
     List<UserContribution> userContributions;
 
     @Builder.Default
