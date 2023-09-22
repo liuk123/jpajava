@@ -22,8 +22,9 @@ public class User extends BaseEntity implements Serializable {
     private Gender gender;
     private Date birth;
 
-    private String LoginName;
+    private String username;
     private String password;
+    private Integer status;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
     List<UserContribution> userContributions;
@@ -34,13 +35,12 @@ public class User extends BaseEntity implements Serializable {
     @Builder.Default
     @Transient
     private List<String> contributions = new ArrayList<>();
+
 }
 
 
 enum Gender {
-    MAIL("男"),FMAIL("女");
-    private String value;
+    MAIL("男"),FEMALE("女");
     private Gender(String value){
-        this.value = value;
     }
 }

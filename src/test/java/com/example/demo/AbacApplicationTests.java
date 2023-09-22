@@ -16,7 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @SpringBootTest
 public class AbacApplicationTests {
@@ -57,7 +56,7 @@ public class AbacApplicationTests {
     }
 
     private List<MetadataCustomizer> getMetadataCustomizer() {
-        return new ArrayList<MetadataCustomizer>() {{
+        return new ArrayList<>() {{
             add(user -> user.getMetadata().put("ip", "192.168.0.1"));
         }};
     }
@@ -87,7 +86,7 @@ public class AbacApplicationTests {
         User user = new User();
         user.setId(1L);
         user.setName("Liukai");
-        user.setLoginName("Liuk1");
+        user.setUsername("Liuk1");
         UserContribution userContribution = new UserContribution();
         userContribution.setId(1L);
         userContribution.setRepository("333.com");
@@ -98,7 +97,7 @@ public class AbacApplicationTests {
         User user1 = new User();
         user1.setId(2L);
         user1.setName("test");
-        user1.setLoginName("test1");
+        user1.setUsername("test1");
         UserContribution userContribution1 = new UserContribution();
         userContribution1.setId(2L);
         userContribution1.setRepository("baidu/com");

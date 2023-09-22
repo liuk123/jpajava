@@ -28,7 +28,7 @@ public class UserService {
         this.userRepository.deleteById(id);
     }
 
-    public User getUserByLoginName(String loginName){
-        return this.userRepository.findByLoginName(loginName);
+    public User getUserByUsername(String username){
+        return this.userRepository.findByUsername(username);
     }
 }
