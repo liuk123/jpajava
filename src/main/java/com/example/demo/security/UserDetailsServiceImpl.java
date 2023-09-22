@@ -2,8 +2,6 @@ package com.example.demo.security;
 
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
-import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsPasswordService;
@@ -35,7 +33,6 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPa
 //        for (Role role : userInfo.getRoleList()) {
 //            authorities.add(new SimpleGrantedAuthority(role.getRoleCode()));
 //        }
-
         return new CustomUser(user, authorities);
     }
 

@@ -1,8 +1,8 @@
--- DELETE FROM user;
--- INSERT INTO user (id, name, age, email)
--- VALUES (1, '魏昌进', 26, 'mail@wcj.plus'),
---        (2, 'test', 1, 'mail1@wcj.plus'),
---        (3, 'admin', 1, 'mail2@wcj.plus');
+# DELETE FROM user;
+# INSERT INTO user (id, name, email)
+# VALUES (1, '魏昌进', 'mail@wcj.plus'),
+#        (2, 'test', 'mail1@wcj.plus'),
+#        (3, 'admin', 'mail2@wcj.plus');
 --
 -- DELETE FROM user_contribution;
 -- INSERT INTO user_contribution (id, user_id, repository)

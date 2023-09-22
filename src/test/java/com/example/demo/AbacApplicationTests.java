@@ -108,7 +108,12 @@ public class AbacApplicationTests {
     void testJpaRemove(){
 //        this.abacService.delOne(102L);
 //        this.userService.delOne(1L);
-        this.permissionService.delOne(202L);
+//        this.permissionService.delOne(102L);
+//        this.abacService.delOne(52L);
+        Permission p1 = this.permissionService.getOne(152L);
+        Permission p2 = this.permissionService.getOne(52L);
+        Permission p3 = this.permissionService.getOne(203L);
+        this.abacService.save(new Abac(52L, "userName=='liukai'",  List.of(p1,p2,p3)));
     }
 
 }

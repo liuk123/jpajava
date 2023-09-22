@@ -1,7 +1,6 @@
 package com.example.demo.security.filter;
 
 import com.example.demo.model.User;
-import com.example.demo.security.CustomUser;
 import com.example.demo.security.MetadataCustomizer;
 import com.example.demo.security.SecurityContext;
 import com.example.demo.service.AbacService;
@@ -10,13 +9,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNullApi;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -44,7 +40,6 @@ public class MyOncePerRequestFilter extends OncePerRequestFilter  {
 
         List<String> permissions = securityContext.rbacPermissions(user, abacService.getAll(), metadataCustomizers);
         List<GrantedAuthority> authorities = permissions.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
-//        UserDetails userDetails = new CustomUser(user,authorities);
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user, null, authorities);
         authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

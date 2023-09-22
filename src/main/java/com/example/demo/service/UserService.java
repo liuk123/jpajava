@@ -21,8 +21,8 @@ public class UserService {
         user.setContributions(user.getUserContributions().stream().map(UserContribution::getRepository).toList());
         return user;
     }
-    public User save(User user){
-        return this.userRepository.save(user);
+    public void save(User user){
+        this.userRepository.save(user);
     }
     public void delOne(Long id){
         this.userRepository.deleteById(id);

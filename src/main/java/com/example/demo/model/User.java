@@ -35,7 +35,6 @@ public class User extends BaseEntity implements Serializable {
     @Builder.Default
     @Transient
     private List<String> contributions = new ArrayList<>();
-
 }
 
 
