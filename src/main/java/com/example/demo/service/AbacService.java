@@ -1,11 +1,13 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Abac;
+import com.example.demo.model.Permission;
 import com.example.demo.repository.AbacRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Slf4j
@@ -23,5 +25,13 @@ public class AbacService {
     }
     public Abac save(Abac abac){
         return this.abacRepository.saveAndFlush(abac);
+    }
+
+    public void delByPermissionId(Long id){
+        List<Abac> abacs = this.abacRepository.findByPermissions_Id(id);
+        for(Abac abac:abacs){
+            abac.setPermissions(abac.getPermissions().stream().filter(v-> !Objects.equals(v.getId(), id)).toList());
+        }
+        abacRepository.saveAll(abacs);
     }
 }

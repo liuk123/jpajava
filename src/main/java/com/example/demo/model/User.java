@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serializable;
 import java.util.*;
@@ -13,6 +14,7 @@ import java.util.*;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@DynamicUpdate
 public class User extends BaseEntity implements Serializable {
 
     private String name;
