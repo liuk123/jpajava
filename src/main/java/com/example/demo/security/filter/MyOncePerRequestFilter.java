@@ -33,22 +33,6 @@ public class MyOncePerRequestFilter extends OncePerRequestFilter  {
 
     @Override
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-//        UserDetails user = toUser();
-//        List<String> permissions = securityContext.rbacPermissions(user, abacService.getAll(), metadataCustomizers);
-//        List<GrantedAuthority> abacAuthority = permissions.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
-//        user.getAuthorities().addAll(abacAuthority);
-
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if(authentication instanceof CustomUser customUser){
-//            if(isAuthorized(customUser)){
-//                List<String> permissions = securityContext.rbacPermissions(customUser.getUser(), abacService.getAll(), metadataCustomizers);
-//                List<GrantedAuthority> authorities = permissions.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
-//                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(customUser.getUser(), null, authorities);
-//                authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-//                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-//                filterChain.doFilter(request, response);
-//            }
-//        }
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication!=null){
@@ -63,6 +47,5 @@ public class MyOncePerRequestFilter extends OncePerRequestFilter  {
 
             filterChain.doFilter(request, response);
         }
-//        CustomUser customUser =(CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 }
