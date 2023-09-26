@@ -15,6 +15,7 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamicUpdate
+@ToString(exclude = {"userContributions"})
 public class User extends BaseEntity implements Serializable {
 
     private String name;

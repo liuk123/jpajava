@@ -41,3 +41,9 @@ VALUES  (1, 1),
         (3, 2),
         (3, 3),
         (3, 4);
+
+DELETE FROM role;
+INSERT INTO role (id, name)
+VALUES (1, 'teacher'),
+    (2,'student'),
+    (3, 'principal');

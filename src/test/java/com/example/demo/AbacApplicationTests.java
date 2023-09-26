@@ -33,20 +33,19 @@ public class AbacApplicationTests {
 
     @Test
     void testRbac(){
-        User user = userService.get(1L);
+        User user = userService.getUser(1L);
         List<Abac> rbac = abacService.getAll();
         List<String> permissions = securityContext.rbacPermissions(user, rbac);
         System.out.println(permissions);
 
-        user = userService.get(2L);
+        user = userService.getUser(2L);
         permissions = securityContext.rbacPermissions(user, rbac);
         System.out.println(permissions);
-
     }
 
     @Test
     void testMetadataCustomizer(){
-        User user = userService.get(1L);
+        User user = userService.getUser(1L);
         List<Abac> rbac = abacService.getAll();
 
         List<String> permissions = securityContext.rbacPermissions(user, rbac);

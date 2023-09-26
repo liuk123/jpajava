@@ -16,7 +16,7 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public User get(Long id){
+    public User getUser(Long id){
         User user = this.userRepository.findFirstById(id);
         user.setContributions(user.getUserContributions().stream().map(UserContribution::getRepository).toList());
         return user;

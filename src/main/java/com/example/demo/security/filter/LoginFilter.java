@@ -25,12 +25,12 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         }
         if (request.getContentType().equals(MediaType.APPLICATION_JSON_VALUE)) {
             try {
-                Map<String, String> userInfo = new ObjectMapper().readValue(request.getInputStream(), Map.class);
+                Map userInfo = new ObjectMapper().readValue(request.getInputStream(), Map.class);
                 // 采用 getUsernameParameter() 方式，我们可以自定义 json 数据中用户名和密码的 key
-                String username = userInfo.get(getUsernameParameter());
-                String password = userInfo.get(getPasswordParameter());
+                String username = (String) userInfo.get(getUsernameParameter());
+                String password = (String) userInfo.get(getPasswordParameter());
 
-                String rememberValue = userInfo.get(AbstractRememberMeServices.DEFAULT_PARAMETER);
+                Boolean rememberValue = (Boolean) userInfo.get(AbstractRememberMeServices.DEFAULT_PARAMETER);
                 if (!ObjectUtils.isEmpty(rememberValue)) {
                     request.setAttribute(AbstractRememberMeServices.DEFAULT_PARAMETER, rememberValue);
                 }
