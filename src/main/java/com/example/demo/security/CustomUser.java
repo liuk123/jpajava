@@ -23,6 +23,7 @@ public class CustomUser extends org.springframework.security.core.userdetails.Us
         user.setPassword(null);
         this.user = user;
     }
+
     public void setToken(String token){
         this.token = token;
     }

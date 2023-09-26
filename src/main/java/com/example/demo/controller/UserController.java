@@ -19,7 +19,7 @@ public class UserController {
 
     @GetMapping(path="/currentUser")
     public User getCurrentUser(Authentication authentication){
-        User user = (User) authentication.getPrincipal();
-        return user;
+        CustomUser customUser = (CustomUser) authentication.getPrincipal();
+        return customUser.getUser();
     }
 }

@@ -14,7 +14,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamicUpdate
-@ToString(exclude = {"user"})
 public class UserContribution extends BaseEntity implements Serializable {
     private String repository;
 

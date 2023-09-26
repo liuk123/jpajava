@@ -6,9 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 @Slf4j
 public class UserService {
@@ -31,8 +28,10 @@ public class UserService {
         this.userRepository.deleteById(id);
     }
 
+
     public User getUserByUsername(String username){
         User user = this.userRepository.findByUsername(username);
+        user.setContributions(user.getUserContributions().stream().map(UserContribution::getRepository).toList());
         return user;
     }
 }

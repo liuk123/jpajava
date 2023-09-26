@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -49,19 +50,19 @@ public class MyOncePerRequestFilter extends OncePerRequestFilter  {
 //            }
 //        }
 
-        CustomUser customUser =(CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication!=null){
+            CustomUser customUser = (CustomUser) authentication.getPrincipal();
+            List<String> permissions = securityContext.rbacPermissions(customUser.getUser(), abacService.getAll(), metadataCustomizers);
+            List<GrantedAuthority> authorities = permissions.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
 
-        List<String> permissions = securityContext.rbacPermissions(customUser.getUser(), abacService.getAll(), metadataCustomizers);
-        List<GrantedAuthority> authorities = permissions.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+            CustomUser u = new CustomUser(customUser.getUser(), authorities);
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(u, null, authorities);
+            authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(customUser.getUser(), null, authorities);
-        authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-
-        filterChain.doFilter(request, response);
-
-    }
-    private boolean isAuthorized(CustomUser customUser){
-        return true;
+            filterChain.doFilter(request, response);
+        }
+//        CustomUser customUser =(CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 }

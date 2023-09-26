@@ -13,7 +13,6 @@ import org.hibernate.annotations.DynamicUpdate;
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamicUpdate
-@ToString(exclude = {})
 public class Dictionary extends BaseEntity{
     private String value;
 
