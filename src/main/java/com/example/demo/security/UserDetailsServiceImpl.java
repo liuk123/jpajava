@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPasswordService {
+public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPasswordService, MetadataCustomizer {
     final UserService userService;
 
     public UserDetailsServiceImpl(UserService userService) {
@@ -46,5 +46,10 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPa
 //        u.setPassword(newPassword);
         customUser.setUser(u);
         return customUser;
+    }
+
+    @Override
+    public void customize(User user){
+        user.getMetadata().put("ip", "192.168.0.1");
     }
 }

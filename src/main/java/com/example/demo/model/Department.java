@@ -16,7 +16,8 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicUpdate
 @ToString(exclude = {})
 public class Department extends BaseEntity{
+
+    private Long parentId;
     private String name;
     private String description;
-    private Long parentId;
 }

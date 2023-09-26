@@ -6,15 +6,15 @@ import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
-@Table(name="Role")
+@Table(name="Dictionary")
 @Data
 @Builder
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamicUpdate
-public class Role extends BaseEntity{
+@ToString(exclude = {})
+public class Dictionary extends BaseEntity{
+    private String value;
 
-    private String name;
-    private String description;
 }

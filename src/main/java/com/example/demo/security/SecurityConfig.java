@@ -1,6 +1,7 @@
 package com.example.demo.security;
 
 import com.example.demo.security.filter.LoginFilter;
+import com.example.demo.security.filter.MyOncePerRequestFilter;
 import com.example.demo.security.handler.*;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +20,7 @@ import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.sql.DataSource;
 import java.util.UUID;
@@ -40,6 +42,10 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public OncePerRequestFilter myOncePerRequestFilter() {
+        return new MyOncePerRequestFilter();
+    }
     /**
      * 自定义 remember-me 的实现
      */
@@ -101,11 +107,9 @@ public class SecurityConfig {
         .userDetailsService(userDetailsService)
         .formLogin(Customizer.withDefaults())
 
-        .rememberMe((remember)->{
-            remember.rememberMeServices(rememberMeServices())
-                    .tokenRepository(persistentTokenRepository())
-                    .tokenValiditySeconds(10);
-        })
+        .rememberMe((remember)-> remember.rememberMeServices(rememberMeServices())
+                .tokenRepository(persistentTokenRepository())
+                .tokenValiditySeconds(10))
 
         // 开启注销功能
         .logout((logout) ->
@@ -116,21 +120,13 @@ public class SecurityConfig {
                     .logoutSuccessHandler(new MyLogoutSuccessHandler()))
 
         //异常的处理
-        .exceptionHandling((exception)->{
-            exception.authenticationEntryPoint(new MyAuthenticationEntryPoint())
-                    .accessDeniedHandler(new MyAccessDeniedHandler());
-        })
+        .exceptionHandling((exception)-> exception.authenticationEntryPoint(new MyAuthenticationEntryPoint())
+                .accessDeniedHandler(new MyAccessDeniedHandler()))
         // 关闭 csrf 防御
         .anonymous(AbstractHttpConfigurer::disable).csrf(AbstractHttpConfigurer::disable);
 
 
         return http.build();
     }
-
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        return (web) -> web.ignoring().requestMatchers("/assets/**")
-//                .requestMatchers(HttpMethod.OPTIONS, "/**");
-//    }
 
 }

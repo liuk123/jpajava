@@ -18,4 +18,5 @@ public class BaseEntity {
     public Date createTime;
     @UpdateTimestamp
     public Date updateTime;
+
 }
