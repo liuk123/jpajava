@@ -8,14 +8,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.intercept.RequestAuthorizationContext;
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
@@ -24,6 +27,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.sql.DataSource;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 @EnableWebSecurity
 @Configuration
@@ -86,7 +90,6 @@ public class SecurityConfig {
         return loginFilter;
     }
 
-
     /**
      * 鉴权、授权
      */
@@ -120,13 +123,19 @@ public class SecurityConfig {
                     .logoutSuccessHandler(new MyLogoutSuccessHandler()))
 
         //异常的处理
-        .exceptionHandling((exception)-> exception.authenticationEntryPoint(new MyAuthenticationEntryPoint())
+        .exceptionHandling((exception)-> exception
+                .authenticationEntryPoint(new MyAuthenticationEntryPoint())
                 .accessDeniedHandler(new MyAccessDeniedHandler()))
         // 关闭 csrf 防御
         .anonymous(AbstractHttpConfigurer::disable).csrf(AbstractHttpConfigurer::disable);
 
 
         return http.build();
+    }
+
+
+    private AuthorizationDecision accessAuth(Supplier<Authentication> authenticationSupplier, RequestAuthorizationContext requestAuthorizationContext) {
+        return new AuthorizationDecision(false);
     }
 
 }

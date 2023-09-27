@@ -13,23 +13,12 @@ public class SecurityProperties {
     private String logoutUrl = "/user/logout";
 
     private String[] matchers = new String[]{
-            "/user/**",
+//            "/user/**",
             "/news/**",
             "/amount/**"
     };
     private String[] MethodGETMatchers = new String[]{
             "/link/**",
-            "/article/**",
-            "/comment/**",
-            "/reply/**",
-            "/tag/**",
-            "/category/**",
-            "/bookmark/**",
-            "/menu/**",
-            "/focus/**",
-            "/friend/**",
-            "/speak/**",
-            "/rss/**"
     };
 
 }
