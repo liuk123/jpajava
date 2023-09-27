@@ -1,6 +1,5 @@
 package com.example.demo.security.filter;
 
-import com.example.demo.model.User;
 import com.example.demo.security.CustomUser;
 import com.example.demo.security.MetadataCustomizer;
 import com.example.demo.security.SecurityContext;
@@ -19,7 +18,6 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
