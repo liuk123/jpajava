@@ -39,7 +39,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
                 setDetails(request, authRequest);
                 return this.getAuthenticationManager().authenticate(authRequest);
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
         }
         return super.attemptAuthentication(request, response);

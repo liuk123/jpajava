@@ -1,6 +1,7 @@
 package com.example.demo.security;
 
 import com.example.demo.security.filter.LoginFilter;
+import com.example.demo.security.filter.MyAuthorizationManager;
 import com.example.demo.security.filter.MyOncePerRequestFilter;
 import com.example.demo.security.handler.*;
 import jakarta.annotation.Resource;
@@ -40,6 +41,9 @@ public class SecurityConfig {
 
     @Resource
     private SecurityProperties securityProperties;
+
+    @Resource
+    private MyAuthorizationManager<RequestAuthorizationContext> myAuthorizationManager;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -100,7 +104,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests((auth) ->
             auth.requestMatchers(securityProperties.getMatchers()).permitAll()
                 .requestMatchers(HttpMethod.GET, securityProperties.getMethodGETMatchers()).permitAll()
-                .anyRequest().authenticated()
+//                .anyRequest().authenticated()
+                    .anyRequest().access(myAuthorizationManager)
         )
 
         // 开启登录功能
@@ -131,11 +136,6 @@ public class SecurityConfig {
 
 
         return http.build();
-    }
-
-
-    private AuthorizationDecision accessAuth(Supplier<Authentication> authenticationSupplier, RequestAuthorizationContext requestAuthorizationContext) {
-        return new AuthorizationDecision(false);
     }
 
 }

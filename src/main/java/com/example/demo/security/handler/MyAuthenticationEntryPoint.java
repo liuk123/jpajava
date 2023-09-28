@@ -19,8 +19,8 @@ public class MyAuthenticationEntryPoint implements AuthenticationEntryPoint {
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.setContentType("application/json;charset=UTF-8");
         Map<String, Object> result = new HashMap<>();
-        result.put("code", 401);
-        result.put("message", "未认证，请登录");
+        result.put("code", 403);
+        result.put("message", "未认证");
         result.put("data", null);
         String s = new ObjectMapper().writeValueAsString(result);
         response.getWriter().println(s);
