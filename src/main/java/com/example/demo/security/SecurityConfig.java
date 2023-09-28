@@ -5,17 +5,16 @@ import com.example.demo.security.filter.MyAuthorizationManager;
 import com.example.demo.security.filter.MyOncePerRequestFilter;
 import com.example.demo.security.handler.*;
 import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -28,7 +27,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.sql.DataSource;
 import java.util.UUID;
-import java.util.function.Supplier;
 
 @EnableWebSecurity
 @Configuration
@@ -42,7 +40,7 @@ public class SecurityConfig {
     @Resource
     private SecurityProperties securityProperties;
 
-    @Resource
+    @Autowired
     private MyAuthorizationManager<RequestAuthorizationContext> myAuthorizationManager;
 
     @Bean
@@ -101,11 +99,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         // 开启登录功能
-        http.authorizeHttpRequests((auth) ->
-            auth.requestMatchers(securityProperties.getMatchers()).permitAll()
+        http.authorizeHttpRequests((register) ->
+            register
+                .requestMatchers(securityProperties.getMatchers()).permitAll()
                 .requestMatchers(HttpMethod.GET, securityProperties.getMethodGETMatchers()).permitAll()
 //                .anyRequest().authenticated()
-                    .anyRequest().access(myAuthorizationManager)
+                .anyRequest().access(myAuthorizationManager)
         )
 
         // 开启登录功能
@@ -129,8 +128,8 @@ public class SecurityConfig {
 
         //异常的处理
         .exceptionHandling((exception)-> exception
-                .authenticationEntryPoint(new MyAuthenticationEntryPoint())
-                .accessDeniedHandler(new MyAccessDeniedHandler()))
+                .accessDeniedHandler(new MyAccessDeniedHandler())
+                .authenticationEntryPoint(new MyAuthenticationEntryPoint()))
         // 关闭 csrf 防御
         .anonymous(AbstractHttpConfigurer::disable).csrf(AbstractHttpConfigurer::disable);
 

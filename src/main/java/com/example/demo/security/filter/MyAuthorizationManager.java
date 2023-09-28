@@ -4,10 +4,11 @@ import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.AuthorizationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.access.intercept.RequestAuthorizationContext;
+import org.springframework.stereotype.Component;
 
 import java.util.function.Supplier;
 
-
+@Component
 public class MyAuthorizationManager <T> implements AuthorizationManager<T> {
 
     @Override
@@ -27,7 +28,7 @@ public class MyAuthorizationManager <T> implements AuthorizationManager<T> {
 
 //        String servletPath = httpServletRequest.getServletPath();
         // TODO: 判断当前用户是否拥有访问servletPath的权限
-        boolean granted = true;
+        boolean granted = false;
 
         return new AuthorizationDecision(granted);
     }
