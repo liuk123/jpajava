@@ -1,9 +1,9 @@
 package com.example.demo;
 
-import com.example.demo.db.Abac;
-import com.example.demo.db.Permission;
-import com.example.demo.db.User;
-import com.example.demo.db.UserContribution;
+import com.example.demo.db.model.Abac;
+import com.example.demo.db.model.Permission;
+import com.example.demo.db.model.User;
+import com.example.demo.db.model.UserContribution;
 import com.example.demo.security.MetadataCustomizer;
 import com.example.demo.security.SecurityContext;
 import com.example.demo.service.AbacService;

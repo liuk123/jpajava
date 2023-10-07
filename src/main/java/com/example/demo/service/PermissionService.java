@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.db.Permission;
-import com.example.demo.repository.PermissionRepository;
+import com.example.demo.db.model.Permission;
+import com.example.demo.db.repository.PermissionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

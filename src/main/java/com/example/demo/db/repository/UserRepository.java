@@ -1,9 +1,8 @@
-package com.example.demo.repository;
+package com.example.demo.db.repository;
 
-import com.example.demo.db.User;
+import com.example.demo.db.model.User;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 
 public interface UserRepository extends JpaRepository<User, Long> {
     User findFirstById(Long id);

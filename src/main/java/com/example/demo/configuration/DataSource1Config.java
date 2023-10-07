@@ -25,7 +25,7 @@ import javax.sql.DataSource;
         entityManagerFactoryRef =  "db1EntityManagerFactory",
         transactionManagerRef = "db1TransactionManager"
 )
-public class DataSourceConfig {
+public class DataSource1Config {
     /**
      * 指定数据源1的DataSource
      * @return
@@ -56,7 +56,7 @@ public class DataSourceConfig {
      */
     @Primary
     @Bean(name="db1EntityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(
             EntityManagerFactoryBuilder builder, @Qualifier("db1DataSource") DataSource db1DataSource
     ){
         return builder.dataSource(db1DataSource).packages("com.example.demo.db").persistenceUnit("db1").build();

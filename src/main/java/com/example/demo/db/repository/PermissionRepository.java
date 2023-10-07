@@ -1,6 +1,6 @@
-package com.example.demo.repository;
+package com.example.demo.db.repository;
 
-import com.example.demo.db.Permission;
+import com.example.demo.db.model.Permission;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PermissionRepository extends JpaRepository<Permission, Long> {

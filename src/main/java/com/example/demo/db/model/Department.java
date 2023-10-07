@@ -1,4 +1,5 @@
-package com.example.demo.db;
+package com.example.demo.db.model;
+
 
 import com.example.demo.base.BaseEntity;
 import jakarta.persistence.Entity;
@@ -7,15 +8,16 @@ import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
-@Table(name="Role")
+@Table(name="Department")
 @Data
 @Builder
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamicUpdate
-public class Role extends BaseEntity {
+public class Department extends BaseEntity {
 
+    private Long parentId;
     private String name;
     private String description;
 }

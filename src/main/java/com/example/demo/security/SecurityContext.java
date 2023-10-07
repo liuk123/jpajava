@@ -1,8 +1,8 @@
 package com.example.demo.security;
 
-import com.example.demo.db.Abac;
-import com.example.demo.db.Permission;
-import com.example.demo.db.User;
+import com.example.demo.db.model.Abac;
+import com.example.demo.db.model.Permission;
+import com.example.demo.db.model.User;
 import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;

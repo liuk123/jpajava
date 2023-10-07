@@ -1,7 +1,7 @@
 package com.example.demo.service;
-import com.example.demo.db.User;
-import com.example.demo.db.UserContribution;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.db.model.User;
+import com.example.demo.db.model.UserContribution;
+import com.example.demo.db.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
