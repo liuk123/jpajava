@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.base;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,5 +18,4 @@ public class BaseEntity {
     public Date createTime;
     @UpdateTimestamp
     public Date updateTime;
-
 }

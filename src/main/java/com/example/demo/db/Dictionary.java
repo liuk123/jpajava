@@ -1,5 +1,6 @@
-package com.example.demo.model;
+package com.example.demo.db;
 
+import com.example.demo.base.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -17,7 +18,7 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamicUpdate
-public class Dictionary extends BaseEntity{
+public class Dictionary extends BaseEntity {
 
 
     @ElementCollection

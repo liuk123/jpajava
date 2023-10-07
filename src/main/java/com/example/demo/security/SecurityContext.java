@@ -1,8 +1,8 @@
 package com.example.demo.security;
 
-import com.example.demo.model.Abac;
-import com.example.demo.model.Permission;
-import com.example.demo.model.User;
+import com.example.demo.db.Abac;
+import com.example.demo.db.Permission;
+import com.example.demo.db.User;
 import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 @Component
 public class SecurityContext {

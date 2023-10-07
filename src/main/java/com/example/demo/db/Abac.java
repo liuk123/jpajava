@@ -1,5 +1,6 @@
-package com.example.demo.model;
+package com.example.demo.db;
 
+import com.example.demo.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;

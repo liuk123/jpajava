@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.User;
+import com.example.demo.db.User;
 import com.example.demo.security.CustomUser;
 import com.example.demo.service.UserService;
 import lombok.extern.slf4j.Slf4j;

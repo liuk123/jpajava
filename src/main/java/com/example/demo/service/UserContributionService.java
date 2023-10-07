@@ -1,5 +1,5 @@
 package com.example.demo.service;
-import com.example.demo.model.UserContribution;
+import com.example.demo.db.UserContribution;
 import com.example.demo.repository.UserContributionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Abac;
-import com.example.demo.model.Permission;
+import com.example.demo.db.Abac;
 import com.example.demo.repository.AbacRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

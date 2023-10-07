@@ -1,5 +1,7 @@
-package com.example.demo.model;
+package com.example.demo.db;
 
+import com.example.demo.base.BaseEntity;
+import com.example.demo.base.Gender;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -45,11 +47,4 @@ public class User extends BaseEntity implements Serializable {
     @Builder.Default
     @Transient
     private List<String> contributions = new ArrayList<>();
-}
-
-
-enum Gender {
-    MAIL("男"),FEMALE("女");
-    private Gender(String value){
-    }
 }

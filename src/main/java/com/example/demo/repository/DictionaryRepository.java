@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 
-import com.example.demo.model.Dictionary;
+import com.example.demo.db.Dictionary;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
