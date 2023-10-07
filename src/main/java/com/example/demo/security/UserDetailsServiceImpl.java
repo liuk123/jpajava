@@ -15,7 +15,6 @@ import java.util.List;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPasswordService, MetadataCustomizer {
     final UserService userService;
-
     public UserDetailsServiceImpl(UserService userService) {
         this.userService = userService;
     }

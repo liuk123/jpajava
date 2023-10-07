@@ -4,7 +4,6 @@ import com.example.demo.security.filter.LoginFilter;
 import com.example.demo.security.filter.MyAuthorizationManager;
 import com.example.demo.security.filter.MyOncePerRequestFilter;
 import com.example.demo.security.handler.*;
-import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,13 +30,13 @@ import java.util.UUID;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
-    @Resource
+    @Autowired
     UserDetailsServiceImpl userDetailsService;
 
-    @Resource
+    @Autowired
     private DataSource dataSource;
 
-    @Resource
+    @Autowired
     private SecurityProperties securityProperties;
 
     @Autowired
