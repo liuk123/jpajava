@@ -24,7 +24,6 @@ public class Abac extends BaseEntity implements Serializable {
 
     @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     public List<Permission> permissions;
-
     public Abac(Long id, String expression, List<Permission> permission){
         this.id = id;
         this.permissions = permission;
