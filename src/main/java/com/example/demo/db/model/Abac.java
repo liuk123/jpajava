@@ -30,11 +30,11 @@ public class Abac extends BaseEntity implements Serializable {
 
     @ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
-        name = "abac_permissions",
+        name = "abac_permission",
         joinColumns = {
                 @JoinColumn(name = "abac_id",referencedColumnName = "id") },
         inverseJoinColumns = {
-                @JoinColumn(name = "permissions_id",referencedColumnName = "id") })
+                @JoinColumn(name = "permission_id",referencedColumnName = "id") })
     public List<Permission> permissions;
     public Abac(Long id, String expression, List<Permission> permission){
         this.id = id;

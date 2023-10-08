@@ -30,8 +30,8 @@ VALUES (1, 'contributions.contains("galaxy-sea/spring-cloud-apisix")'),
        (2, 'username == "admin1"'),
        (3, 'metadata.get("ip") == "192.168.0.1"');
 
-DELETE FROM abac_permissions;
-INSERT INTO abac_permissions (abac_id, permissions_id)
+DELETE FROM abac_permission;
+INSERT INTO abac_permission (abac_id, permission_id)
 VALUES  (1, 1),
         (2, 1),
         (2, 2),
@@ -44,6 +44,18 @@ VALUES  (1, 1),
 
 DELETE FROM role;
 INSERT INTO role (id, name)
-VALUES (1, 'teacher'),
-    (2,'student'),
-    (3, 'principal');
+VALUES (1, '总经理'),
+    (2,'组长'),
+    (3, '技术员'),
+    (4, '部长'),
+   (5, '管理员'),
+   (6, '操作员');
+
+DELETE FROM user_role;
+INSERT INTO user_role (user_id, role_id)
+VALUES  (1, 1),
+        (2, 1),
+        (2, 2),
+        (3, 3);
+
+

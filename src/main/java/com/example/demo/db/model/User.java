@@ -5,9 +5,7 @@ import com.example.demo.base.Gender;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.util.*;
@@ -20,12 +18,15 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamicUpdate
-@NamedEntityGraph(
-        name = "UserEntity",
-        attributeNodes = {
-                @NamedAttributeNode("userContributions")
-        }
-)
+@NamedEntityGraphs(value = {
+    @NamedEntityGraph(
+            name = "UserEntity",
+            attributeNodes = {
+                    @NamedAttributeNode(value="userContributions")
+            }
+    ),
+})
+@ToString(exclude = {"userContributions"})
 public class User extends BaseEntity implements Serializable {
 
     private String name;
@@ -42,6 +43,17 @@ public class User extends BaseEntity implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
     List<UserContribution> userContributions;
+
+    @JsonIgnore
+    @ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = {
+                    @JoinColumn(name = "user_id",referencedColumnName = "id") },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "role_id",referencedColumnName = "id") })
+    List<Role> roles;
+
 
     @Builder.Default
     @Transient

@@ -1,5 +1,6 @@
 package com.example.demo.security;
 
+import com.example.demo.db.model.Role;
 import com.example.demo.db.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,11 +29,8 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPa
         if(user.getStatus() == 0){
             throw new RuntimeException("用户已被禁用");
         }
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-//        for (Role role : userInfo.getRoleList()) {
-//            authorities.add(new SimpleGrantedAuthority(role.getRoleCode()));
-//        }
-        return new CustomUser(user, authorities);
+//        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        return new CustomUser(user, new ArrayList<>());
     }
 
     @Override
