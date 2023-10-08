@@ -22,7 +22,7 @@ public class Abac extends BaseEntity implements Serializable {
 
     private String expression;
 
-    @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
         name = "abac_permissions",
         joinColumns = {
