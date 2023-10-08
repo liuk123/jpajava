@@ -16,7 +16,6 @@ import org.hibernate.annotations.DynamicUpdate;
 @AllArgsConstructor
 @DynamicUpdate
 public class Department extends BaseEntity {
-
     private Long parentId;
     private String name;
     private String description;

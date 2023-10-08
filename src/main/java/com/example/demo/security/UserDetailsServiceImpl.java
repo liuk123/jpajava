@@ -41,8 +41,6 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPa
         User u = userService.getUserByUsername(user.getUsername());
         u.setPassword(newPassword);
         userService.save(u);
-//        User u = customUser.getUser();
-//        u.setPassword(newPassword);
         customUser.setUser(u);
         return customUser;
     }

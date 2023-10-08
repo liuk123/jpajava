@@ -23,7 +23,7 @@ public class AbacService {
         this.abacRepository.deleteById(id);
     }
     public Abac save(Abac abac){
-        return this.abacRepository.saveAndFlush(abac);
+        return this.abacRepository.save(abac);
     }
 
     public void delByPermissionId(Long id){

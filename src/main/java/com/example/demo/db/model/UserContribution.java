@@ -17,7 +17,6 @@ import java.io.Serializable;
 @DynamicUpdate
 public class UserContribution extends BaseEntity implements Serializable {
     private String repository;
-
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 }
