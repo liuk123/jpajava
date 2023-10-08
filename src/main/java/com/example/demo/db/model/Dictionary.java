@@ -11,7 +11,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import java.util.Map;
 
 @Entity
-@Table(name="Dictionary")
+@Table(name="dictionary")
 @Data
 @Builder
 @EqualsAndHashCode(callSuper = true)

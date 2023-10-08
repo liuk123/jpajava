@@ -9,7 +9,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import java.io.Serializable;
 
 @Entity
-@Table(name="Permission")
+@Table(name="permission")
 @Data
 @Builder
 @EqualsAndHashCode(callSuper = true)

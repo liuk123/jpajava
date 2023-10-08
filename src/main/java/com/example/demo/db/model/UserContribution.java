@@ -8,7 +8,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import java.io.Serializable;
 
 @Entity
-@Table(name="UserContribution")
+@Table(name="user_contribution")
 @Data
 @Builder
 @EqualsAndHashCode(callSuper = true)

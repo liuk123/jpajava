@@ -5,13 +5,15 @@ import com.example.demo.base.Gender;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.util.*;
 
 @Entity
-@Table(name="User")
+@Table(name="user")
 @Data
 @Builder
 @EqualsAndHashCode(callSuper = true)

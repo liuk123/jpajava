@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name="Abac")
+@Table(name="abac")
 @Data
 @Builder
 @EqualsAndHashCode(callSuper = true)
@@ -22,7 +22,13 @@ public class Abac extends BaseEntity implements Serializable {
 
     private String expression;
 
-    @ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "abac_permissions",
+        joinColumns = {
+                @JoinColumn(name = "abac_id",referencedColumnName = "id") },
+        inverseJoinColumns = {
+                @JoinColumn(name = "permissions_id",referencedColumnName = "id") })
     public List<Permission> permissions;
     public Abac(Long id, String expression, List<Permission> permission){
         this.id = id;

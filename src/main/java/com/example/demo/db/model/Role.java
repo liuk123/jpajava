@@ -7,7 +7,7 @@ import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
-@Table(name="Role")
+@Table(name="role")
 @Data
 @Builder
 @EqualsAndHashCode(callSuper = true)

@@ -13,9 +13,10 @@ public class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long id;
-    @Column(updatable = false)
+    @Column(name = "create_time", updatable = false)
     @CreationTimestamp
     public Date createTime;
+    @Column(name = "update_time")
     @UpdateTimestamp
     public Date updateTime;
 }
