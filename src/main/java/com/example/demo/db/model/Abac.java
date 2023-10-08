@@ -18,6 +18,12 @@ import java.util.List;
 @AllArgsConstructor
 @DynamicUpdate
 @DynamicInsert
+@NamedEntityGraph(
+        name = "AbacEntity",
+        attributeNodes = {
+                @NamedAttributeNode("permissions")
+        }
+)
 public class Abac extends BaseEntity implements Serializable {
 
     private String expression;

@@ -20,12 +20,12 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamicUpdate
-//@NamedEntityGraph(
-//        name = "UserEntity",
-//        attributeNodes = {
-//                @NamedAttributeNode("userContributions")
-//        }
-//)
+@NamedEntityGraph(
+        name = "UserEntity",
+        attributeNodes = {
+                @NamedAttributeNode("userContributions")
+        }
+)
 public class User extends BaseEntity implements Serializable {
 
     private String name;

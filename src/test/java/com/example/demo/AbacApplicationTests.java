@@ -45,7 +45,7 @@ public class AbacApplicationTests {
 
     @Test
     void testMetadataCustomizer(){
-        User user = userService.getUserById(1L);
+        User user = userService.getUserById(2L);
         List<Abac> rbac = abacService.getAll();
 
         List<String> permissions = securityContext.rbacPermissions(user, rbac);

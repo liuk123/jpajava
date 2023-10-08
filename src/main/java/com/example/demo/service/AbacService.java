@@ -19,9 +19,7 @@ public class AbacService {
     }
     @Transactional(readOnly = true)
     public List<Abac> getAll(){
-        List<Abac> abacs = this.abacRepository.findAll();
-        abacs.forEach(abac -> abac.getPermissions().size());
-        return abacs;
+        return this.abacRepository.findAll();
     }
     public void delOne(Long id){
         this.abacRepository.deleteById(id);

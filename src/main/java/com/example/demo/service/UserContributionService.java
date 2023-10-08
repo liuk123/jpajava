@@ -13,7 +13,7 @@ public class UserContributionService {
         this.userContributionRepository = userContributionRepository;
     }
 
-    public UserContribution get(Long id){
+    public UserContribution getById(Long id){
         return this.userContributionRepository.findFirstById(id);
     }
     public UserContribution save(UserContribution userContribution){
