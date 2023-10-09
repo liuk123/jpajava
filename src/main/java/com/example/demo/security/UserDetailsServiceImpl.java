@@ -1,18 +1,15 @@
 package com.example.demo.security;
 
-import com.example.demo.db.model.Role;
+
 import com.example.demo.db.model.User;
 import com.example.demo.service.UserService;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsPasswordService;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPasswordService, MetadataCustomizer {
@@ -27,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPa
         if(user == null){
             throw new UsernameNotFoundException("用户不存在");
         }
-        if(user.getStatus() == 0){
+        if(user.getStatus() == null|| user.getStatus() == 0){
             throw new RuntimeException("用户已被禁用");
         }
 //        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
