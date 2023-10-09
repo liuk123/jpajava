@@ -128,7 +128,8 @@ public class SecurityConfig {
         //异常的处理
         .exceptionHandling((exception)-> exception
                 .accessDeniedHandler(new MyAccessDeniedHandler())
-                .authenticationEntryPoint(new MyAuthenticationEntryPoint()))
+//                .authenticationEntryPoint(new MyAuthenticationEntryPoint())
+        )
         // 关闭 csrf 防御
         .anonymous(AbstractHttpConfigurer::disable).csrf(AbstractHttpConfigurer::disable);
 
