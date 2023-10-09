@@ -22,11 +22,10 @@ import java.util.*;
     @NamedEntityGraph(
             name = "UserEntity",
             attributeNodes = {
-                    @NamedAttributeNode(value="userContributions")
+//                    @NamedAttributeNode(value="userContributions")
             }
     ),
 })
-@ToString(exclude = {"userContributions"})
 public class User extends BaseEntity implements Serializable {
 
     private String name;
@@ -40,9 +39,6 @@ public class User extends BaseEntity implements Serializable {
     private String password;
     private Integer status;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
-    List<UserContribution> userContributions;
 
     @JsonIgnore
     @ManyToMany(fetch=FetchType.LAZY)
@@ -58,7 +54,4 @@ public class User extends BaseEntity implements Serializable {
     @Builder.Default
     @Transient
     private Map<String, Object> metadata = new HashMap<>();
-    @Builder.Default
-    @Transient
-    private List<String> contributions = new ArrayList<>();
 }

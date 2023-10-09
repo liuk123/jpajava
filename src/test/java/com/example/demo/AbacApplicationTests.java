@@ -1,14 +1,11 @@
 package com.example.demo;
 
 import com.example.demo.db.model.Abac;
-import com.example.demo.db.model.Permission;
 import com.example.demo.db.model.User;
-import com.example.demo.db.model.UserContribution;
 import com.example.demo.security.MetadataCustomizer;
 import com.example.demo.security.SecurityContext;
 import com.example.demo.service.AbacService;
 import com.example.demo.service.PermissionService;
-import com.example.demo.service.UserContributionService;
 import com.example.demo.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +24,6 @@ public class AbacApplicationTests {
     private SecurityContext securityContext;
     @Autowired
     private PermissionService permissionService;
-    @Autowired
-    private UserContributionService userContributionService;
 
 
     @Test

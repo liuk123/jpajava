@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -30,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPa
             throw new RuntimeException("用户已被禁用");
         }
 //        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        return new CustomUser(user, new ArrayList<>());
+        return new CustomUser(user, Collections.emptyList());
     }
 
     @Override
