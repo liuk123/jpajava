@@ -20,7 +20,6 @@ import java.util.Map;
 @DynamicUpdate
 public class Dictionary extends BaseEntity {
 
-
     @ElementCollection
     @Column(name = "value")
     private Map<String, String> values;

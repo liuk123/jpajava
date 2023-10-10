@@ -36,9 +36,5 @@ public class Abac extends BaseEntity implements Serializable {
         inverseJoinColumns = {
                 @JoinColumn(name = "permission_id",referencedColumnName = "id") })
     public List<Permission> permissions;
-    public Abac(Long id, String expression, List<Permission> permission){
-        this.id = id;
-        this.permissions = permission;
-        this.expression = expression;
-    }
+
 }

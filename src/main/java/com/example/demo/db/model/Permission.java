@@ -21,11 +21,4 @@ public class Permission extends BaseEntity implements Serializable {
 
     private String permission;
 
-//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "permissions")
-//    private List<Abac> abacs;
-
-    public Permission(Long id){
-        this.id = id;
-    }
-
 }
