@@ -31,6 +31,7 @@ public class MyAuthorizationManager <T> implements AuthorizationManager<T> {
         HttpServletRequest httpServletRequest = ((RequestAuthorizationContext) object).getRequest();
         List<Menu> menuWithPermissions = menuService.getMenuWithPermission();
         Authentication authentication = supplier.get();
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 //        System.out.println(httpServletRequest.getRequestURI());
         // menu里的权限配置和用户的权限做对比
         for(Menu menu : menuWithPermissions){
@@ -38,7 +39,6 @@ public class MyAuthorizationManager <T> implements AuthorizationManager<T> {
             if(matcher.matches(httpServletRequest)){
                 isMatch=true;
                 List<Permission> permissions = menu.getPermissions();
-                Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
                 for(GrantedAuthority authority : authorities){
                     for(Permission permission : permissions){
                         if(authority.getAuthority().equals(permission.getPermission())){
