@@ -1,9 +1,11 @@
 package com.example.demo.service;
 import com.example.demo.db.model.Role;
 import com.example.demo.db.model.User;
-//import com.example.demo.db.model.UserContribution;
 import com.example.demo.db.repository.UserRepository;
+import jakarta.persistence.EntityManager;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,9 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 public class UserService {
     private final UserRepository userRepository;
+    private final EntityManager entityManager;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository,EntityManager entityManager) {
         this.userRepository = userRepository;
+        this.entityManager = entityManager;
     }
 
     @Transactional(readOnly = true)
@@ -23,7 +27,10 @@ public class UserService {
         return user;
     }
     public void save(User user){
+//        entityManager.merge(user);
         this.userRepository.save(user);
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        System.out.println(authentication.getPrincipal());
     }
     public void delOne(Long id){
         this.userRepository.deleteById(id);

@@ -26,9 +26,12 @@ import java.util.List;
 )
 public class Abac extends BaseEntity implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String expression;
 
-    @ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch=FetchType.LAZY, cascade = { CascadeType.PERSIST })
     @JoinTable(
         name = "abac_permission",
         joinColumns = {

@@ -7,9 +7,10 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
-@Table(name="permission")
+@Table(name="comment")
 @Data
 @Builder
 @EqualsAndHashCode(callSuper = true)
@@ -17,11 +18,19 @@ import java.io.Serializable;
 @AllArgsConstructor
 @DynamicUpdate
 @DynamicInsert
-public class Permission extends BaseEntity implements Serializable {
+public class Comment extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String permission;
+    private String content;
+
+    @ManyToOne(cascade = {}, optional=false)
+    @JoinColumn(name="from_user_id")
+    private User fromUser;
+
+    @OneToMany(mappedBy = "comment",cascade={  }, fetch=FetchType.LAZY)
+    @OrderBy("createTime ASC")
+    private List<Reply> replyList;
 
 }

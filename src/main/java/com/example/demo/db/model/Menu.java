@@ -26,10 +26,13 @@ import java.util.List;
 )
 public class Menu extends BaseEntity implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String url;
     private String method;
 
-    @ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch=FetchType.LAZY, cascade = { CascadeType.PERSIST })
     @JoinTable(
         name = "menu_permission",
         joinColumns = {

@@ -10,9 +10,7 @@ import java.util.Date;
 @Data
 @MappedSuperclass
 public class BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long id;
+   
     @Column(name = "create_time", updatable = false)
     @CreationTimestamp
     public Date createTime;
