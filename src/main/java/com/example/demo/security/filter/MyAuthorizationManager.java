@@ -31,7 +31,7 @@ public class MyAuthorizationManager <T> implements AuthorizationManager<T> {
         HttpServletRequest httpServletRequest = ((RequestAuthorizationContext) object).getRequest();
         List<Menu> menuWithPermissions = menuService.getMenuWithPermission();
         Authentication authentication = supplier.get();
-        System.out.println(httpServletRequest.getRequestURI());
+//        System.out.println(httpServletRequest.getRequestURI());
         // menu里的权限配置和用户的权限做对比
         for(Menu menu : menuWithPermissions){
             AntPathRequestMatcher matcher = new AntPathRequestMatcher(menu.getUrl());

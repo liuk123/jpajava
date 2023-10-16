@@ -27,10 +27,7 @@ public class UserService {
         return user;
     }
     public void save(User user){
-//        entityManager.merge(user);
         this.userRepository.save(user);
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        System.out.println(authentication.getPrincipal());
     }
     public void delOne(Long id){
         this.userRepository.deleteById(id);

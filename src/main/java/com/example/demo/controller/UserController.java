@@ -34,7 +34,6 @@ public class UserController {
 
     @PostMapping(path = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResultSet saveUser(@RequestBody UserDTO u){
-        System.out.println(u);
         this.userService.save(u.toUser());
         return new ResultSet();
     }
