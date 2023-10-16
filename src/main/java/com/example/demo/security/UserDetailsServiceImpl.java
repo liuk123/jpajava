@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPasswordService, MetadataCustomizer {
+public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPasswordService {
     final UserService userService;
     public UserDetailsServiceImpl(UserService userService) {
         this.userService = userService;
@@ -39,10 +39,5 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPa
         userService.save(u);
         customUser.setUser(u);
         return customUser;
-    }
-
-    @Override
-    public void customize(User user){
-        user.getMetadata().put("ip", "192.168.0.1");
     }
 }
