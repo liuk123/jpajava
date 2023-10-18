@@ -29,7 +29,7 @@ public class Comment extends BaseEntity implements Serializable {
     @JoinColumn(name="from_user_id")
     private User fromUser;
 
-    @OneToMany(mappedBy = "comment",cascade={  }, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "comment",cascade={ CascadeType.REMOVE }, fetch=FetchType.LAZY)
     @OrderBy("createTime ASC")
     private List<Reply> replyList;
 

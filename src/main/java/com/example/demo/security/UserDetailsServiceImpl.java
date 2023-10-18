@@ -20,7 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPa
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.getUserByUsername(username);
+        User user = userService.getUserWithRoleByUsername(username);
         if(user == null){
             throw new UsernameNotFoundException("用户不存在");
         }
@@ -34,7 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserDetailsPa
     @Override
     public UserDetails updatePassword(UserDetails user, String newPassword) {
         CustomUser customUser = (CustomUser) user;
-        User u = userService.getUserByUsername(user.getUsername());
+        User u = userService.getUserWithRoleByUsername(user.getUsername());
         u.setPassword(newPassword);
         userService.save(u);
         customUser.setUser(u);

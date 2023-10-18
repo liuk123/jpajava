@@ -49,7 +49,7 @@ public class AbacApplicationTests {
 
     @Test
     void testUserData(){
-        User user = this.userService.getUserByUsername("liuk1");
+        User user = this.userService.getUserWithRoleByUsername("liuk1");
         System.out.println(user);
 
     }

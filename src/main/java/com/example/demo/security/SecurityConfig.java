@@ -47,10 +47,10 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public OncePerRequestFilter myOncePerRequestFilter() {
-        return new MyOncePerRequestFilter();
-    }
+//    @Bean
+//    public OncePerRequestFilter myOncePerRequestFilter() {
+//        return new MyOncePerRequestFilter();
+//    }
     /**
      * 自定义 remember-me 的实现
      */

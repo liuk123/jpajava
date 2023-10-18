@@ -34,7 +34,7 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public User getUserByUsername(String username){
+    public User getUserWithRoleByUsername(String username){
         User user = this.userRepository.findByUsername(username);
         if(user!=null){
             user.getMetadata().put("roles", user.getRoles().stream().map(Role::getName).toList());

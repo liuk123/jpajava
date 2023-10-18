@@ -20,7 +20,7 @@ class DemoApplicationTests {
 	private PermissionService permissionService;
 	@Test
 	void getUserData() {
-		this.userService.getUserByUsername("liuk1");
+		this.userService.getUserWithRoleByUsername("liuk1");
 //		this.userService.getUserById(1L);
 	}
 	@Test
