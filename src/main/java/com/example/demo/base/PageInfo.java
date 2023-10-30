@@ -8,27 +8,12 @@ import java.util.List;
 @Data
 public class PageInfo<T> extends ResultSet {
 
-    /**
-     * 当前页
-     */
-    private int pageIndex;
-    /**
-     * 显示数量
-     */
-    private int pageSize;
-    /**
-     * 总页数
-     */
-    private int pages;
-    /**
-     * 总条数
-     */
-    private Long total;
 
-    /**
-     * 列表数据
-     */
-    private List<T> data;
+    private int pageIndex; // 当前页
+    private int pageSize; // 显示数量
+    private int pages; // 总页数
+    private Long total; // 总条数
+    private List<T> data; // 列表数据
 
     public PageInfo(int code, String msg){
         super.resultCode = code;

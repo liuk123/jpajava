@@ -8,7 +8,6 @@ public class ResultSet implements Serializable {
     public static final int RESULT_CODE_FALSE = 0;
     public static final int RESULT_CODE_TRUE = 1;
     public static final int RESULT_CODE_ERROR = -1;
-
     public Integer resultCode = RESULT_CODE_TRUE;
     public String resultMsg;
     private Object data;
